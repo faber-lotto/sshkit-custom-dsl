@@ -25,6 +25,8 @@ Or install it yourself as:
 require 'sshkit/custom/dsl'
 
 extend SSHKit::Custom::DSL
+require 'delegate'
+# require 'sshkit/dsl' <= switch to see the different
 
 SSHKit.configure do |sshkit|
   sshkit.format = :pretty
@@ -38,10 +40,32 @@ SSHKit.configure do |sshkit|
   end
 end
 
+class TestScope < SimpleDelegator
+  def data
+    {msg: "12345"}
+  end
+
+  def call_it
+
+    on %w{localhost 127.0.0.1}, in: :sequence, wait: 0 do
+      within "/tmp" do
+        with rails_env: :production do
+          execute "echo", data.fetch(:msg)
+        end
+      end
+    end
+    
+  end
+end
+
+data = {msg: "ABCD"}
+
+TestScope.new(self).call_it
+
 on %w{localhost 127.0.0.1}, in: :sequence, wait: 0 do
   within "/tmp" do
     with rails_env: :production do
-      execute "echo", "12345"
+      execute "echo", data.fetch(:msg)
     end
   end
 end
