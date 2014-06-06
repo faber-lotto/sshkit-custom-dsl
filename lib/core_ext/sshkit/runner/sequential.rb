@@ -1,7 +1,7 @@
 module SSHKit
   module Runner
     class Sequential < Abstract
-      def do_it( &block)
+      def apply_block_to_bcks( &block)
         backends.each do |backend|
           begin
 

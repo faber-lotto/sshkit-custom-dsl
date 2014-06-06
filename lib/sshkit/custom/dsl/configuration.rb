@@ -11,7 +11,7 @@ module SSHKit
           hosts = Array(hosts).map { |rh| rh.is_a?(SSHKit::Host) ? rh : SSHKit::Host.new(rh) }.uniq
           config_store.backends = hosts
           config_store.runner_opts = options
-          config_store.runner.do_it(&block) if block_given?
+          config_store.runner.apply_block_to_bcks(&block) if block_given?
         end
 
         def within(directory)

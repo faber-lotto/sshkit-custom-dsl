@@ -3,7 +3,7 @@ module SSHKit
 
     class Parallel < Abstract
 
-      def do_it( &block)
+      def apply_block_to_bcks( &block)
         threads = []
         backends.each do |host|
           threads << Thread.new(host) do |h|
