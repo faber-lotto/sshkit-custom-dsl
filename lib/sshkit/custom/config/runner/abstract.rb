@@ -77,7 +77,7 @@ module SSHKit
 
             rescue Exception => e
               e2 = ExecuteError.new e
-              raise e2, "Exception while executing on host #{backend}: #{e.message}"
+              raise e2, "Exception while executing on host #{backend.host}: #{e.message}"
             ensure
               self.active_backend = nil
             end

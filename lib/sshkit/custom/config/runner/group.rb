@@ -21,7 +21,7 @@ module SSHKit
 
 
           def group_size
-            @group_size || options[:limit] || 2
+            @group_size ||= options[:limit] || 2
           end
 
         end

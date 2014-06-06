@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'sshkit', '~> 1.5.1'
   spec.add_dependency 'scoped_storage'
+  spec.add_dependency 'rake'
 
   spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
 
   spec.add_development_dependency 'rspec', '2.99.0.rc1'
