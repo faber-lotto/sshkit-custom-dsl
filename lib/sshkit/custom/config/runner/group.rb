@@ -9,7 +9,7 @@ module SSHKit
           def apply_block_to_bcks(&block)
             backends.each_slice(group_size).collect do |group_backends|
 
-              Parallel.new(nil, nil).tap do |runner|
+              Parallel.new(options).tap do |runner|
                 runner.backends = group_backends
                 runner.apply_block_to_bcks(&block)
               end

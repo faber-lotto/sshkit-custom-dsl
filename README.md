@@ -1,6 +1,8 @@
 # Sshkit::Custom::Dsl
 
-TODO: Write a gem description
+Exchanges original sshkit dsl against a custom dsl. This DSL does not change the scope of the blocks.
+Furthor more it uses `Rake::Threadpool`, to handle parallel requests. Keep in mind `Runner::Parallel` 
+ and Runner::Group are execute all blocks in *parallel threads*, so do it thread save.
 
 ## Installation
 
