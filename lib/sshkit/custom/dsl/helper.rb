@@ -25,6 +25,10 @@ module SSHKit
           end
         end
 
+        def _config_store
+          @_config_store ||= SSHKit::Custom::Config::Store
+        end
+
       end
     end
   end

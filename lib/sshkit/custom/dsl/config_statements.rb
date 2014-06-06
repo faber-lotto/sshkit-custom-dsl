@@ -3,10 +3,6 @@ module SSHKit
     module DSL
       module ConfigStatements
 
-        def _config_store
-          @_config_store ||= SSHKit::Custom::Config::Store
-        end
-
         def on(hosts, options={}, &block)
           hosts = Array(hosts).map { |rh| Host(rh) }.uniq
 
