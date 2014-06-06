@@ -11,12 +11,20 @@ module SSHKit
         self.class.active_backend=new_backend
       end
 
+      def self.scope_storage
+        ScopedStorage::ThreadLocalStorage
+      end
+
+      def self.scope
+        @scope ||= ScopedStorage::Scope.new('sshkit_runner', scope_storage)
+      end
+
       def self.active_backend
-        Thread.current[:active_backend]
+        scope[:active_backend]
       end
 
       def self.active_backend=(new_backend)
-        Thread.current[:active_backend]=new_backend
+        scope[:active_backend]=new_backend
       end
 
       def send_cmd(cmd, *args, &block)

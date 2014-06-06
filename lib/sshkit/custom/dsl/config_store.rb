@@ -4,7 +4,15 @@ module SSHKit
       module ConfigStore
 
         module_function
-        
+
+        def scope_storage
+          ScopedStorage::ThreadLocalStorage
+        end
+
+        def config_scope
+          @config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_config', scope_storage)
+        end
+
         def runner_opts=(opts)
           @runner = nil
           @runner_opts = { in: :parallel }.merge(opts)
@@ -39,7 +47,7 @@ module SSHKit
         end
 
         def _envs
-          Thread.current[:_envs] ||= []
+          config_scope[:_envs] ||= []
         end
 
         def add_env(env)
@@ -55,7 +63,7 @@ module SSHKit
         end
 
         def _user_groups
-          Thread.current[:_user_groups] ||= []
+          config_scope[:_user_groups] ||= []
         end
 
         def add_user_group(user, group)

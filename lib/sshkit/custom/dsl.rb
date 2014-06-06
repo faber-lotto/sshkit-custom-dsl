@@ -1,5 +1,6 @@
 require 'sshkit/custom/dsl/version'
 require 'core_ext/sshkit'
+require 'scoped_storage'
 
 require 'sshkit/custom/dsl/config_store'
 require 'sshkit/custom/dsl/configuration'
