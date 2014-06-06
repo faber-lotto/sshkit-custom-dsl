@@ -14,7 +14,7 @@ module SSHKit
         end
 
         def create_runner(opts)
-          @runner ||= Runner::Abstract.create_runner opts
+          @runner = Runner::Abstract.create_runner opts
         end        
 
         def runner
