@@ -17,6 +17,14 @@ module SSHKit
           end
         end
 
+        def Host(rh)
+          if rh.is_a?(SSHKit::Host)
+            rh
+          else
+            SSHKit::Host.new(rh)
+          end
+        end
+
       end
     end
   end

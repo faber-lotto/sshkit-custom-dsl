@@ -1,7 +1,7 @@
 module SSHKit
   module Custom
-    module DSL
-      module ConfigStore
+    module Config
+      module Store
 
         module_function
 
@@ -13,20 +13,19 @@ module SSHKit
           @config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_config', scope_storage)
         end
 
-        def runner_opts=(opts)
-          @runner = nil
-          @runner_opts = { in: :parallel }.merge(opts)
-        end        
+        def create_runner(opts)
+          opts_with_defaults = { in: :parallel }.merge(opts)
 
-        def runner
-          @runner ||= case @runner_opts[:in]
+          @runner ||= case opts_with_defaults[:in]
                         when :parallel then SSHKit::Runner::Parallel
                         when :sequence then SSHKit::Runner::Sequential
                         when :groups then SSHKit::Runner::Group
                         else
-                          raise RuntimeError, "Don't know how to handle run style #{@runner_opts[:in].inspect}"
-                      end.new(nil, @runner_opts)
+                          raise RuntimeError, "Don't know how to handle run style #{opts_with_defaults[:in].inspect}"
+                      end.new(nil, opts_with_defaults)
+        end        
 
+        def runner
           @runner.tap{|r| r.backends = backends}
         end
 
@@ -39,11 +38,11 @@ module SSHKit
         end
 
         def add_pwd(directory)
-          backend.pwd ||= [];  backend.pwd << directory
+          active_backend.pwd ||= [];  active_backend.pwd << directory
         end
 
         def pop_pwd
-          backend.pwd ||= [];  backend.pwd.pop
+          active_backend.pwd ||= [];  active_backend.pwd.pop
         end
 
         def _envs
@@ -54,7 +53,7 @@ module SSHKit
           old_env =  backends.first.env.clone
           _envs << old_env
           env = old_env.merge(env)
-          backend.env = env
+          active_backend.env = env
         end
 
         def pop_env
@@ -67,16 +66,18 @@ module SSHKit
         end
 
         def add_user_group(user, group)
-          _user_groups << {user: backend.user, group:  backend.group }
-          backend.user = user; backend.group = group
+          _user_groups << {user: active_backend.user, group:  active_backend.group }
+          active_backend.user = user
+          active_backend.group = group
         end
 
         def pop_user_group
           old_user_group = _user_groups.pop || {}
-          backend.user = old_user_group[:user]; backend.group = old_user_group[:group]
+          active_backend.user = old_user_group[:user]
+          active_backend.group = old_user_group[:group]
         end
 
-        def backend
+        def active_backend
           SSHKit::Runner::Abstract.active_backend
         end
       end
