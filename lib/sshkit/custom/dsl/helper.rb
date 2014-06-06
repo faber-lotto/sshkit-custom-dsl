@@ -4,7 +4,7 @@ module SSHKit
       module Helper
 
         def active_backend
-          SSHKit::Runner::Abstract.active_backend
+          SSHKit::Custom::Config::Store.active_backend
         end
 
         def host

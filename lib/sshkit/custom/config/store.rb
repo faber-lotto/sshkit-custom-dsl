@@ -14,15 +14,7 @@ module SSHKit
         end
 
         def create_runner(opts)
-          opts_with_defaults = { in: :parallel }.merge(opts)
-
-          @runner ||= case opts_with_defaults[:in]
-                        when :parallel then SSHKit::Runner::Parallel
-                        when :sequence then SSHKit::Runner::Sequential
-                        when :groups then SSHKit::Runner::Group
-                        else
-                          raise RuntimeError, "Don't know how to handle run style #{opts_with_defaults[:in].inspect}"
-                      end.new(nil, opts_with_defaults)
+          @runner ||= Runner::Abstract.create_runner opts
         end        
 
         def runner
@@ -78,7 +70,7 @@ module SSHKit
         end
 
         def active_backend
-          SSHKit::Runner::Abstract.active_backend
+          SSHKit::Custom::Config::Runner::Abstract.active_backend
         end
       end
     end

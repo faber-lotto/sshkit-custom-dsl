@@ -1,6 +1,2 @@
 require 'sshkit'
 require 'core_ext/sshkit/backend/abstract'
-require 'core_ext/sshkit/runner/abstract'
-require 'core_ext/sshkit/runner/sequential'
-require 'core_ext/sshkit/runner/parallel'
-require 'core_ext/sshkit/runner/group'
