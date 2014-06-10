@@ -4,7 +4,7 @@ module SSHKit
   module Custom
     module DSL
       describe Helper do
-        subject{
+        subject {
           Class.new() do
             include Helper
           end.new
@@ -27,7 +27,7 @@ module SSHKit
           end
         end
 
-        describe '.active_backend'do
+        describe '.active_backend' do
           it 'returns the actual active backend' do
             expect(subject.active_backend).to eq(mock_bck)
           end
