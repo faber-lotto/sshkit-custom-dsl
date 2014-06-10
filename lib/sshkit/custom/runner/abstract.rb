@@ -86,11 +86,11 @@ module SSHKit
             end
           end
 
-          protected
-
           def do_wait
             sleep wait_interval
           end
+
+          protected
 
           def wait_interval
             @wait_interval || options[:wait] || 2

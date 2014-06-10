@@ -8,10 +8,7 @@ module SSHKit
           def apply_block_to_bcks(&block)
             backends.each_slice(group_size).collect do |group_backends|
 
-              Parallel.new(options).tap do |runner|
-                runner.backends = group_backends
-                runner.apply_block_to_bcks(&block)
-              end
+              exec_parallel(group_backends, &block)
 
               do_wait
 
@@ -21,6 +18,17 @@ module SSHKit
 
           def group_size
             @group_size ||= options[:limit] || 2
+          end
+
+          def exec_parallel(group, &block)
+            use_runner.call(options).tap do |runner|
+              runner.backends = group
+              runner.apply_block_to_bcks(&block)
+            end
+          end
+
+          def use_runner
+            ->(options){ Parallel.new(options)}
           end
 
         end

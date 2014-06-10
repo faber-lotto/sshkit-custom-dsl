@@ -33,6 +33,12 @@ module SSHKit
           end
         end
 
+        describe '.host' do
+          it 'return the actual host' do
+            expect(subject.host).to eq(mock_bck.host)
+          end
+        end
+
 
         describe '.Host' do
           it 'converts to a host object' do

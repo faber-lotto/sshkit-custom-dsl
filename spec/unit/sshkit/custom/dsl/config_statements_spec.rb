@@ -136,6 +136,14 @@ module SSHKit
 
             subject.as({user: user, group: group})
           end
+
+          it 'uses the username when given' do
+            user = 'u'
+
+            expect(subject._config_store).to receive(:add_user_group).with(user, nil)
+
+            subject.as(user)
+          end
         end
 
       end
