@@ -6,10 +6,9 @@ module SSHKit
         def on(hosts, options={}, &block)
           hosts = Array(hosts).map { |rh| Host(rh) }.uniq
 
-          _config_store.backends = hosts
-          _config_store.create_runner options
+          _setup_runner(hosts, options)
 
-          _config_store.runner.apply_block_to_bcks(&block) if block_given?
+          _runner.apply_block_to_bcks(&block) if block_given?
         end
 
         def within(directory)
@@ -32,8 +31,8 @@ module SSHKit
         def as(who)
 
           if who.respond_to? :fetch
-            user = who.fetch(:user,  who.fetch("user"))
-            group = who.fetch(:group, who.fetch("group", nil))
+            user = who.fetch(:user){ who.fetch('user') }
+            group = who.fetch(:group){ who.fetch('group', nil) }
           else
             user = who
             group = nil
@@ -47,6 +46,15 @@ module SSHKit
           yield if block_given?
         ensure
           _config_store.pop_user_group
+        end
+
+        def _setup_runner(hosts, options)
+          _config_store.backends = hosts
+          _config_store.create_runner options
+        end
+
+        def _runner
+          _config_store.runner
         end
 
       end
