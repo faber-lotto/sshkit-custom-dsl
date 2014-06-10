@@ -52,13 +52,13 @@ module SSHKit
             end
 
             it 'sends the cmd to the active backend' do
-              args=[1,2,3]
+              args = [1, 2, 3]
               expect(mock_bck).to receive(:execute).with(*args)
               subject.send_cmd(:execute, *args)
             end
 
             it 'executes a block to get the args' do
-              args=[1,2,3]
+              args = [1, 2, 3]
               expect(mock_bck).to receive(:execute).with(*args)
 
               subject.send_cmd(:execute) do
@@ -70,7 +70,7 @@ module SSHKit
             it 'reraises an exception' do
               expect do
                 subject.send_cmd(:execute) do
-                  raise
+                  fail
                 end
               end.to raise_error
             end
@@ -83,15 +83,15 @@ module SSHKit
             end
 
             it 'executes the block and yields the host' do
-              block = ->(_host){}
+              block = ->(_host) {}
               expect(block).to receive(:call)
               subject.apply_to_bck(mock_bck, &block)
             end
 
             it 'reraises an exception' do
-              block = ->(_host){ raise }
+              block = ->(_host) { fail }
 
-              expect{ subject.apply_to_bck(mock_bck, &block) }.to raise_error
+              expect { subject.apply_to_bck(mock_bck, &block) }.to raise_error
             end
 
           end
@@ -101,7 +101,7 @@ module SSHKit
 
               expect do
                 subject.send(:do_wait)
-              end.to change{Time.now.utc}.by_at_least(1)
+              end.to change { Time.now.utc }.by_at_least(1)
             end
 
           end

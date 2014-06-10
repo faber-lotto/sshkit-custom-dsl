@@ -14,10 +14,10 @@ module SSHKit
 
         def create_runner(opts)
           @runner = Runner::Abstract.create_runner opts
-        end        
+        end
 
         def runner
-          @runner.tap{|r| r.backends = backends}
+          @runner.tap { |r| r.backends = backends }
         end
 
         def backends=(hosts)
@@ -59,7 +59,7 @@ module SSHKit
         end
 
         def add_user_group(user, group)
-          _user_groups << {user: active_backend.user, group:  active_backend.group }
+          _user_groups << { user: active_backend.user, group:  active_backend.group }
           active_backend.user = user
           active_backend.group = group
         end

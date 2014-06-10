@@ -11,17 +11,11 @@ module SSHKit
         @env ||= {}
       end
 
-      def host
-        @host
-      end
+      attr_reader :host
 
-      def user
-        @user
-      end
+      attr_reader :user
 
-      def group
-        @group
-      end
+      attr_reader :group
     end
   end
 end

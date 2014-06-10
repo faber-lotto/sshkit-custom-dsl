@@ -5,7 +5,7 @@ module SSHKit
     module DSL
       describe ConfigStatements do
         subject do
-          Class.new() do
+          Class.new do
             include ConfigStatements
             include Helper
 
@@ -24,7 +24,7 @@ module SSHKit
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
         end
 
-        let(:hosts){['localhost', '127.0.0.1']}
+        let(:hosts) { ['localhost', '127.0.0.1'] }
 
         before :each do
           SSHKit::Custom::Runner::Abstract.active_backend = mock_bck
@@ -42,7 +42,7 @@ module SSHKit
           end
 
           it 'applies a block to the runner' do
-            block = ->(_host){}
+            block = ->(_host) {}
             runner_double = double(:runner)
 
             expect(subject).to receive(:_runner).and_return(runner_double)
@@ -67,7 +67,7 @@ module SSHKit
 
             expect do
               subject.within(dir) do
-                raise
+                fail
               end
             end.to raise_error
           end
@@ -82,19 +82,19 @@ module SSHKit
 
         describe '.with' do
           it 'changes the environment' do
-            env = {a: 2}
+            env = { a: 2 }
             expect(subject._config_store).to receive(:add_env).with(env)
 
             subject.with(env)
           end
 
           it 'ensures the environment is set back' do
-            env = {a: 2}
+            env = { a: 2 }
             expect(subject._config_store).to receive(:pop_env)
 
             expect do
               subject.with(env) do
-                raise
+                fail
               end
             end.to raise_error
           end
@@ -117,7 +117,7 @@ module SSHKit
 
             expect do
               subject.as(user: user, group: group) do
-                raise
+                fail
               end
             end.to raise_error
           end

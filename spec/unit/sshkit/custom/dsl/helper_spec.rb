@@ -5,7 +5,7 @@ module SSHKit
     module DSL
       describe Helper do
         subject do
-          Class.new() do
+          Class.new do
             include Helper
           end.new
         end

@@ -9,8 +9,8 @@ module SSHKit
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
         end
 
-        let(:new_env){ {ab: :cd} }
-        let(:old_env){ {ab: 123, i: 5}}
+        let(:new_env) { { ab: :cd } }
+        let(:old_env) { { ab: 123, i: 5 } }
 
         before :each do
           SSHKit::Custom::Runner::Abstract.active_backend = mock_bck
@@ -18,7 +18,7 @@ module SSHKit
 
         describe '.create_runner' do
           it 'creates the wanted runner' do
-            opts = {in: :parallel}
+            opts = { in: :parallel }
             expect(Runner::Abstract).to receive(:create_runner).with(opts)
             Store.create_runner opts
           end
@@ -26,7 +26,7 @@ module SSHKit
 
         describe '.runner' do
           it 'returns the actual runner' do
-            opts = {in: :parallel}
+            opts = { in: :parallel }
             Store.create_runner opts
 
             expect(Store.runner).not_to be_nil
@@ -35,14 +35,14 @@ module SSHKit
 
         describe '.backends=' do
           it 'stores a list of backends' do
-            Store.backends=['127.0.0.1', 'localhost'].map { |h| SSHKit::Host.new(h) }
+            Store.backends = ['127.0.0.1', 'localhost'].map { |h| SSHKit::Host.new(h) }
             expect(Store.backends.last.host.hostname).to eq('localhost')
           end
         end
 
         describe '.add_pwd' do
           it 'adds a directory to the stack' do
-            expect {Store.add_pwd('ddd')}.to change {mock_bck.pwd.count}.by(1)
+            expect { Store.add_pwd('ddd') }.to change { mock_bck.pwd.count }.by(1)
           end
         end
 
@@ -51,7 +51,7 @@ module SSHKit
             Store.add_pwd('ddd')
             Store.add_pwd('bbb')
             Store.add_pwd('ccc')
-            expect {Store.pop_pwd}.to change {mock_bck.pwd.count}.by(-1)
+            expect { Store.pop_pwd }.to change { mock_bck.pwd.count }.by(-1)
           end
         end
 
@@ -90,7 +90,7 @@ module SSHKit
 
         describe '.add_user_group' do
           it 'stores an user and group' do
-            Store.add_user_group('u','g')
+            Store.add_user_group('u', 'g')
             expect(mock_bck.user).to eq 'u'
             expect(mock_bck.group).to eq 'g'
           end
@@ -98,8 +98,8 @@ module SSHKit
 
         describe '.pop_user_group' do
           it 'restores previous an user and group' do
-            Store.add_user_group('u','g')
-            Store.add_user_group('u1','g1')
+            Store.add_user_group('u', 'g')
+            Store.add_user_group('u1', 'g1')
 
             expect(mock_bck.user).to eq 'u1'
             expect(mock_bck.group).to eq 'g1'

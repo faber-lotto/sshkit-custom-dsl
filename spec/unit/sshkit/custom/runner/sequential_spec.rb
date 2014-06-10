@@ -10,7 +10,7 @@ module SSHKit
 
         describe '.apply_block_to_bcks' do
           it 'calls apply_to_bck for every backend' do
-            block = ->(_){}
+            block = ->(_) {}
             bck1 =  SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
             bck2 =  SSHKit.config.backend.new(SSHKit::Host.new('127.0.0.1'))
             subject.backends = [bck1, bck2]
