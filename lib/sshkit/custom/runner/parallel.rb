@@ -1,6 +1,5 @@
 module SSHKit
   module Custom
-    module Config
       module Runner
 
         require 'rake'
@@ -31,5 +30,4 @@ module SSHKit
         end
       end
     end
-  end
 end

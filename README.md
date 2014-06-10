@@ -1,4 +1,4 @@
-# Sshkit::Custom::Dsl
+# SSHKit::Custom::DSL
 
 Exchanges original sshkit dsl against a custom dsl. This DSL does not change the scope of the blocks.
 Furthor more it uses `Rake::Threadpool`, to handle parallel requests. Keep in mind `Runner::Parallel` 

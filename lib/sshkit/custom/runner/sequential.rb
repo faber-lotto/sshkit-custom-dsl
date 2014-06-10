@@ -1,6 +1,5 @@
 module SSHKit
   module Custom
-    module Config
       module Runner
         class Sequential < Abstract
 
@@ -14,5 +13,4 @@ module SSHKit
         end
       end
     end
-  end
 end

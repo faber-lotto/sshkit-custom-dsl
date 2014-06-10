@@ -1,6 +1,5 @@
 module SSHKit
   module Custom
-    module Config
       module Runner
 
         ExecuteError = SSHKit::Runner::ExecuteError
@@ -32,7 +31,7 @@ module SSHKit
           end
 
           def self.active_backend
-            scope[:active_backend]
+            scope[:active_backend] || fail(ArgumentError, 'Backend not set')
           end
 
           def self.active_backend=(new_backend)
@@ -69,6 +68,10 @@ module SSHKit
           end
 
 
+          def apply_block_to_bcks(&block)
+            raise SSHKit::Backend::MethodUnavailableError
+          end
+
           def apply_to_bck(backend, &block)
             begin
 
@@ -96,5 +99,4 @@ module SSHKit
         end
       end
     end
-  end
 end

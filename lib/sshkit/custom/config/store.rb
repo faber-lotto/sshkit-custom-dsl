@@ -30,11 +30,13 @@ module SSHKit
         end
 
         def add_pwd(directory)
-          active_backend.pwd ||= [];  active_backend.pwd << directory
+          active_backend.pwd ||= []
+          active_backend.pwd << directory
         end
 
         def pop_pwd
-          active_backend.pwd ||= [];  active_backend.pwd.pop
+          active_backend.pwd ||= []
+          active_backend.pwd.pop
         end
 
         def _envs
@@ -42,7 +44,7 @@ module SSHKit
         end
 
         def add_env(env)
-          old_env =  backends.first.env.clone
+          old_env =  active_backend.env.clone
           _envs << old_env
           env = old_env.merge(env)
           active_backend.env = env
@@ -50,7 +52,7 @@ module SSHKit
 
         def pop_env
           old_env = _envs.pop || {}
-          backends.each {|backend| backend.env = old_env}
+          active_backend.env = old_env
         end
 
         def _user_groups
@@ -70,7 +72,7 @@ module SSHKit
         end
 
         def active_backend
-          SSHKit::Custom::Config::Runner::Abstract.active_backend
+          SSHKit::Custom::Runner::Abstract.active_backend
         end
       end
     end
