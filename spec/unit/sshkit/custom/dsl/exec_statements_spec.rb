@@ -4,7 +4,7 @@ module SSHKit
   module Custom
     module DSL
       describe ExecStatements do
-        subject {
+        subject do
           Class.new() do
             include ExecStatements
             include ConfigStatements
@@ -18,12 +18,12 @@ module SSHKit
             attr_accessor :runner
 
           end.new
-        }
+        end
 
 
-        let(:mock_bck) {
+        let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-        }
+        end
 
         let(:hosts){['localhost', '127.0.0.1']}
 

@@ -5,9 +5,9 @@ module SSHKit
     module Runner
       describe Abstract do
 
-        subject{
+        subject do
           Abstract.new(wait: 1)
-        }
+        end
 
 
         describe '#create_runner' do
@@ -45,9 +45,9 @@ module SSHKit
           end
 
           describe '.snd_cmd' do
-            let(:mock_bck) {
+            let(:mock_bck) do
               SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-            }
+            end
 
             before :each do
               SSHKit::Custom::Runner::Abstract.active_backend = mock_bck
@@ -71,28 +71,28 @@ module SSHKit
 
 
             it 'reraises an exception' do
-              expect{
+              expect do
                 subject.send_cmd(:execute) do
                   raise
                 end
-              }.to raise_error
+              end.to raise_error
             end
 
           end
 
           describe '.apply_to_bck' do
-            let(:mock_bck) {
+            let(:mock_bck) do
               SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-            }
+            end
 
             it 'executes the block and yields the host' do
-              block = ->(host){}
+              block = ->(_host){}
               expect(block).to receive(:call)
               subject.apply_to_bck(mock_bck, &block)
             end
 
             it 'reraises an exception' do
-              block = ->(host){ raise }
+              block = ->(_host){ raise }
 
               expect{
                 subject.apply_to_bck(mock_bck, &block)
@@ -105,20 +105,20 @@ module SSHKit
           describe '.do_wait' do
             it 'sleeps [wait] seconds' do
 
-              expect{
+              expect do
                 subject.send(:do_wait)
-              }.to change{Time.now.utc}.by_at_least(1)
+              end.to change{Time.now.utc}.by_at_least(1)
             end
 
           end
 
           describe '.apply_block_to_bcks' do
             it 'should be implemented by sub classes' do
-              expect{
+              expect do
                 subject.apply_block_to_bcks do
 
                 end
-              }.to raise_error
+              end.to raise_error
             end
           end
 

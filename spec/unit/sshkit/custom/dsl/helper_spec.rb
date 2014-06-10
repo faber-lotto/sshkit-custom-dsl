@@ -4,15 +4,15 @@ module SSHKit
   module Custom
     module DSL
       describe Helper do
-        subject {
+        subject do
           Class.new() do
             include Helper
           end.new
-        }
+        end
 
-        let(:mock_bck) {
+        let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-        }
+        end
 
         before :each do
           SSHKit::Custom::Runner::Abstract.active_backend = mock_bck

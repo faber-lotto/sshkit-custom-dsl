@@ -5,9 +5,9 @@ module SSHKit
     module Config
       describe Store do
 
-        let(:mock_bck) {
+        let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-        }
+        end
 
         let(:new_env){ {ab: :cd} }
         let(:old_env){ {ab: 123, i: 5}}

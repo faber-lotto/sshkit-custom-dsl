@@ -15,17 +15,17 @@ module SSHKit
       end
 
       describe Parallel do
-        let(:thread_pool){
+        let(:thread_pool)do
           double(:thread_pool).tap do |t|
             allow(t).to receive(:future) do |host, &block|
               DummyFuture.new(host, &block)
             end
           end
-        }
+        end
 
-        subject{
+        subject do
           Parallel.new(wait: 0)
-        }
+        end
 
         describe '.apply_block_to_bcks' do
           it 'calls apply_to_bck for every backend' do

@@ -60,7 +60,7 @@ module SSHKit
 
               active_backend.send(cmd, *args)
 
-            rescue Exception => e
+            rescue => e
               e2 = ExecuteError.new e
               raise e2, "Exception while executing on host #{active_backend.host}: #{e.message}"
             end
@@ -68,7 +68,7 @@ module SSHKit
           end
 
 
-          def apply_block_to_bcks(&block)
+          def apply_block_to_bcks(&_block)
             raise SSHKit::Backend::MethodUnavailableError
           end
 
@@ -78,7 +78,7 @@ module SSHKit
               self.active_backend = backend
               block.call(backend.host)
 
-            rescue Exception => e
+            rescue => e
               e2 = ExecuteError.new e
               raise e2, "Exception while executing on host #{backend.host}: #{e.message}"
             ensure

@@ -4,9 +4,9 @@ module SSHKit
   module Custom
     module Runner
       describe Group do
-        subject{
+        subject do
           Group.new(wait: 0, limit: 1)
-        }
+        end
 
         describe '.apply_block_to_bcks' do
 

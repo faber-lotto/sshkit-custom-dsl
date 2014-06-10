@@ -4,9 +4,9 @@ module SSHKit
   module Custom
     module Runner
       describe Sequential do
-        subject{
+        subject do
           Sequential.new(wait: 0)
-        }
+        end
 
         describe '.apply_block_to_bcks' do
           it 'calls apply_to_bck for every backend' do

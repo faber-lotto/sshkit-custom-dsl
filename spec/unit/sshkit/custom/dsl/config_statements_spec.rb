@@ -4,7 +4,7 @@ module SSHKit
   module Custom
     module DSL
       describe ConfigStatements do
-        subject {
+        subject do
           Class.new() do
             include ConfigStatements
             include Helper
@@ -21,12 +21,12 @@ module SSHKit
 
             end
           end.new
-        }
+        end
 
 
-        let(:mock_bck) {
+        let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
-        }
+        end
 
         let(:hosts){['localhost', '127.0.0.1']}
 
@@ -46,7 +46,7 @@ module SSHKit
           end
 
           it 'applies a block to the runner' do
-            block = ->(host){}
+            block = ->(_host){}
             runner_double = double(:runner)
 
             expect(subject).to receive(:_runner).and_return(runner_double)
