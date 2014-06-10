@@ -1,7 +1,6 @@
 module SSHKit
   module Custom
       module Runner
-
         ExecuteError = SSHKit::Runner::ExecuteError
 
         class Abstract
@@ -13,13 +12,15 @@ module SSHKit
             opts_with_defaults = { in: :parallel }.merge(opts)
 
             case opts_with_defaults[:in]
-              when :parallel then Parallel
-              when :sequence then Sequential
-              when :groups then Group
-              else
+            when :parallel
+                Parallel
+            when :sequence
+                Sequential
+            when :groups
+                Group
+            else
                 raise RuntimeError, "Don't know how to handle run style #{opts_with_defaults[:in].inspect}"
             end.new(opts_with_defaults)
-
           end
 
           def self.scope_storage
@@ -51,7 +52,6 @@ module SSHKit
           end
 
           def send_cmd(cmd, *args, &block)
-
             begin
 
               if block
@@ -64,9 +64,7 @@ module SSHKit
               e2 = ExecuteError.new e
               raise e2, "Exception while executing on host #{active_backend.host}: #{e.message}"
             end
-
           end
-
 
           def apply_block_to_bcks(&_block)
             raise SSHKit::Backend::MethodUnavailableError
@@ -95,7 +93,6 @@ module SSHKit
           def wait_interval
             @wait_interval || options[:wait] || 2
           end
-
         end
       end
     end

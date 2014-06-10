@@ -9,7 +9,6 @@ module SSHKit
           Abstract.new(wait: 1)
         end
 
-
         describe '#create_runner' do
           it 'creates a group runner' do
             expect(Abstract.create_runner(in: :groups)).to be_kind_of Group
@@ -30,7 +29,6 @@ module SSHKit
           it 'raises an error for unknown runners' do
             expect { Abstract.create_runner(in: :abc) }.to raise_error
           end
-
 
           describe '.active_backend' do
             it 'sets the active backend' do
@@ -69,7 +67,6 @@ module SSHKit
 
             end
 
-
             it 'reraises an exception' do
               expect do
                 subject.send_cmd(:execute) do
@@ -94,11 +91,8 @@ module SSHKit
             it 'reraises an exception' do
               block = ->(_host){ raise }
 
-              expect{
-                subject.apply_to_bck(mock_bck, &block)
-              }.to raise_error
+              expect{ subject.apply_to_bck(mock_bck, &block) }.to raise_error
             end
-
 
           end
 

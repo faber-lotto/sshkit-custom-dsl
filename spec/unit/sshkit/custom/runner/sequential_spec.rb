@@ -18,7 +18,6 @@ module SSHKit
             expect(block).to receive(:call).with(bck1.host)
             expect(block).to receive(:call).with(bck2.host)
 
-
             subject.apply_block_to_bcks(&block)
           end
         end

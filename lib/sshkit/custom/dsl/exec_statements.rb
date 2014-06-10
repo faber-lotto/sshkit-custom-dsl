@@ -2,9 +2,7 @@ module SSHKit
   module Custom
     module DSL
       module ExecStatements
-
         EXEC_STATEMENTS = [:execute, :make, :rake, :test, :capture, :upload!, :download!].freeze
-
 
         EXEC_STATEMENTS.each do |method|
           define_method method do |*args, &block|
@@ -38,7 +36,6 @@ module SSHKit
            fi
           EOTEST
         end
-
       end
     end
   end

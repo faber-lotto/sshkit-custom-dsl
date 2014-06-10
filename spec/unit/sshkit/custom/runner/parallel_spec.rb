@@ -31,7 +31,6 @@ module SSHKit
           it 'calls apply_to_bck for every backend' do
             allow(subject).to receive(:thread_pool).and_return(thread_pool)
 
-
             block = ->(_){}
 
             bck1 =  SSHKit.config.backend.new(SSHKit::Host.new('localhost'))

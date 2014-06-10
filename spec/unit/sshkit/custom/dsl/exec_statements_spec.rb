@@ -14,12 +14,10 @@ module SSHKit
               self
             end
 
-
             attr_accessor :runner
 
           end.new
         end
-
 
         let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
@@ -42,7 +40,6 @@ module SSHKit
             subject.runner = double(:runner)
             args = [1,2,3,4]
 
-
             EXEC_STATEMENTS.each do |meth|
               expect(subject.runner).to receive(:send_cmd).with(meth, *args)
               subject.send(meth, *args)
@@ -52,26 +49,24 @@ module SSHKit
 
         describe '._guard_sudo_user!' do
           it 'checks if a user can sudo with a specific user' do
-            expect(subject).to receive(:execute).with(/if.*sudo.*-u.*deploy/m, {:verbosity=>0})
+            expect(subject).to receive(:execute).with(/if.*sudo.*-u.*deploy/m, :verbosity=>0)
             subject._guard_sudo_user!('deploy')
           end
         end
 
-
         describe '._guard_sudo_group!' do
           it 'checks if a user can sudo with a specific group' do
-            expect(subject).to receive(:execute).with(/if.*sudo.*-u.*deploy.*-g.*dgroup/m, {:verbosity=>0})
+            expect(subject).to receive(:execute).with(/if.*sudo.*-u.*deploy.*-g.*dgroup/m, :verbosity=>0)
             subject._guard_sudo_group!('deploy', 'dgroup')
           end
         end
 
         describe '._guard_dir!' do
           it 'checks if a user can access a specific dir' do
-            expect(subject).to receive(:execute).with(/if.*-d.*\/tmp/m, {:verbosity=>0})
+            expect(subject).to receive(:execute).with(/if.*-d.*\/tmp/m, :verbosity=>0)
             subject._guard_dir!('/tmp')
           end
         end
-
 
       end
     end

@@ -2,7 +2,6 @@ module SSHKit
   module Custom
     module DSL
       module ConfigStatements
-
         def on(hosts, options={}, &block)
           hosts = Array(hosts).map { |rh| Host(rh) }.uniq
 
@@ -29,7 +28,6 @@ module SSHKit
         end
 
         def as(who)
-
           if who.respond_to? :fetch
             user = who.fetch(:user){ who.fetch('user') }
             group = who.fetch(:group){ who.fetch('group', nil) }
@@ -56,7 +54,6 @@ module SSHKit
         def _runner
           _config_store.runner
         end
-
       end
     end
   end

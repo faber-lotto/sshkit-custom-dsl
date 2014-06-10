@@ -57,7 +57,6 @@ module SSHKit
 
         describe '.add_env' do
 
-
           it 'adds an env to the stack' do
             expect(mock_bck.env).to eq({})
             Store.add_env(new_env)

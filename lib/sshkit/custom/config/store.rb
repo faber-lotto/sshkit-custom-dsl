@@ -2,7 +2,6 @@ module SSHKit
   module Custom
     module Config
       module Store
-
         module_function
 
         def scope_storage

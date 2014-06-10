@@ -2,7 +2,6 @@ module SSHKit
   module Custom
     module DSL
       module Helper
-
         LOGGING_METHODS = [:log, :debug, :fatal, :error, :warn, :info, :debug].freeze
 
         def active_backend
@@ -30,7 +29,6 @@ module SSHKit
         def _config_store
           @_config_store ||= SSHKit::Custom::Config::Store
         end
-
       end
     end
   end

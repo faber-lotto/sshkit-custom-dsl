@@ -1,12 +1,11 @@
 module SSHKit
   module Custom
       module Runner
-
         class Group < Abstract
           attr_writer :group_size
 
           def apply_block_to_bcks(&block)
-            backends.each_slice(group_size).collect do |group_backends|
+            backends.each_slice(group_size).map do |group_backends|
 
               exec_parallel(group_backends, &block)
 
@@ -14,7 +13,6 @@ module SSHKit
 
             end.flatten
           end
-
 
           def group_size
             @group_size ||= options[:limit] || 2
@@ -30,7 +28,6 @@ module SSHKit
           def use_runner
             ->(options){ Parallel.new(options)}
           end
-
         end
       end
     end

@@ -22,7 +22,6 @@ module SSHKit
       def group
         @group
       end
-
     end
   end
 end

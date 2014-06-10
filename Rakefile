@@ -7,7 +7,6 @@ RuboCop::RakeTask.new
 
 task :default => :spec
 
-
 desc 'Run RSpec with code coverage'
 task :coverage do
   ENV['SIMPLE_COVERAGE'] = 'true'

@@ -1,12 +1,9 @@
 module SSHKit
   module Custom
       module Runner
-
         require 'rake'
 
         class Parallel < Abstract
-
-
           def thread_pool
             @thread_pool ||= Rake::ThreadPool.new(thread_count)
           end
@@ -27,7 +24,6 @@ module SSHKit
               end
             end
           end
-
         end
       end
     end

@@ -10,19 +10,15 @@ module SSHKit
             include Helper
 
             def _guard_sudo_user!(*)
-
             end
 
             def _guard_dir!(*)
-
             end
 
             def _guard_sudo_group!(*)
-
             end
           end.new
         end
-
 
         let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
@@ -69,11 +65,11 @@ module SSHKit
             dir = '1234'
             expect(subject._config_store).to receive(:pop_pwd)
 
-            expect{
+            expect do
               subject.within(dir) do
                 raise
               end
-            }.to raise_error
+            end.to raise_error
           end
 
           it 'guards the block with a dir existing check' do
@@ -96,12 +92,11 @@ module SSHKit
             env = {a: 2}
             expect(subject._config_store).to receive(:pop_env)
 
-
-            expect{
+            expect do
               subject.with(env) do
                 raise
               end
-            }.to raise_error
+            end.to raise_error
           end
         end
 
@@ -112,7 +107,7 @@ module SSHKit
 
             expect(subject._config_store).to receive(:add_user_group).with(user, group)
 
-            subject.as({user: user, group: group})
+            subject.as(user: user, group: group)
           end
 
           it 'ensures the user and group is set back' do
@@ -120,11 +115,11 @@ module SSHKit
             group = 'g'
             expect(subject._config_store).to receive(:pop_user_group)
 
-            expect{
-              subject.as({user: user, group: group}) do
+            expect do
+              subject.as(user: user, group: group) do
                 raise
               end
-            }.to raise_error
+            end.to raise_error
           end
 
           it 'guards the block execution with a user and group existing check' do
@@ -134,7 +129,7 @@ module SSHKit
             expect(subject).to receive(:_guard_sudo_user!).with(user)
             expect(subject).to receive(:_guard_sudo_group!).with(user, group)
 
-            subject.as({user: user, group: group})
+            subject.as(user: user, group: group)
           end
 
           it 'uses the username when given' do

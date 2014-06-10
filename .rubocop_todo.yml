@@ -10,52 +10,7 @@
 Lint/EndAlignment:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Lint/RescueException:
-  Enabled: true
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Lint/UnusedBlockArgument:
-  Enabled: true
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/UnusedMethodArgument:
-  Enabled: true
-
-# Offense count: 21
-# Cop supports --auto-correct.
-Style/Blocks:
-  Enabled: true
-
-# Offense count: 6
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-Style/BracesAroundHashParameters:
-  Enabled: false
-
-# Offense count: 3
-# Configuration parameters: IndentWhenRelativeTo, SupportedStyles, IndentOneStep.
-Style/CaseIndentation:
-  Enabled: false
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: PreferredMethods.
-Style/CollectionMethods:
-  Enabled: false
-
-# Offense count: 21
-# Cop supports --auto-correct.
-Style/EmptyLines:
-  Enabled: false
-
-# Offense count: 24
-# Cop supports --auto-correct.
-Style/EmptyLinesAroundBody:
-  Enabled: false
 
 # Offense count: 4
 # Cop supports --auto-correct.

@@ -39,7 +39,6 @@ module SSHKit
           end
         end
 
-
         describe '.Host' do
           it 'converts to a host object' do
             expect(subject.Host('localhost')).to be_kind_of SSHKit::Host

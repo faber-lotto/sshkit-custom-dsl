@@ -14,7 +14,6 @@ module SSHKit
           let(:bck1) {SSHKit.config.backend.new(SSHKit::Host.new('localhost'))}
           let(:bck2) {SSHKit.config.backend.new(SSHKit::Host.new('127.0.0.1'))}
 
-
           before :each do
             allow(subject).to receive(:use_runner).and_return(->(options){Sequential.new(options)})
           end
