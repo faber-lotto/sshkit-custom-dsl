@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/faber-lotto/sshkit-custom-dsl.svg)](https://travis-ci.org/faber-lotto/sshkit-custom-dsl)
+[![Coverage Status](https://coveralls.io/repos/faber-lotto/sshkit-custom-dsl/badge.png)](https://coveralls.io/r/faber-lotto/sshkit-custom-dsl)
+[![Code Climate](https://codeclimate.com/github/faber-lotto/sshkit-custom-dsl.png)](https://codeclimate.com/github/faber-lotto/sshkit-custom-dsl)
+[![Gem Version](https://badge.fury.io/rb/capistrano-template.svg)](http://badge.fury.io/rb/capistrano-template)
+
 # SSHKit::Custom::DSL
 
 Exchanges original sshkit dsl against a custom dsl. This DSL does not change the scope of the blocks.
