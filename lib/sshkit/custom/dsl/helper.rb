@@ -3,6 +3,8 @@ module SSHKit
     module DSL
       module Helper
 
+        LOGGING_METHODS = [:log, :debug, :fatal, :error, :warn, :info, :debug].freeze
+
         def active_backend
           SSHKit::Custom::Config::Store.active_backend
         end
@@ -11,7 +13,7 @@ module SSHKit
           active_backend.host
         end
 
-        [:log, :debug, :fatal, :error, :warn, :info, :debug].each do |method|
+        LOGGING_METHODS.each do |method|
           define_method method do |*args|
             active_backend.send method, *args
           end
