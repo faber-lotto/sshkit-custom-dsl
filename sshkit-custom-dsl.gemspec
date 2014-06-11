@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['d.spaeth@faber.de']
   spec.summary       = %q(Exchanges original sshkit dsl against a custom dsl)
   spec.description   = %q(Exchanges original sshkit dsl against a custom dsl. This DSL does not change the scope of the blocks.)
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/faber-lotto/sshkit-custom-dsl'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
