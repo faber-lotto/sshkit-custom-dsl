@@ -4,3 +4,5 @@
 --api public
 --verbose
 --debug
+--markup-provider=redcarpet
+--markup=markdown

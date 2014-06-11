@@ -6,9 +6,11 @@ module SSHKit
         #
         # @param hosts [Array<String>] the DNS of the hosts to execute the following blocks
         # @option options [Symbol] :in Chooses the runner to be used
-        #   :parallel => Parallel
-        #   :sequence => Sequential
-        #   :groups => Group
+        #
+        #   * :parallel => Parallel
+        #   * :sequence => Sequential
+        #   * :groups => Group
+        #
         # @option options [Integer] :wait Amount of seconds to sleep between executions for Sequential and Parallel Runner
         # @option options [Integer] :limit Amount of hosts to use in one Batch for Group Runner
         # For a block {|host| ... }
