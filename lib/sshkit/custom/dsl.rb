@@ -12,6 +12,8 @@ require 'sshkit/custom/dsl/config_statements'
 require 'sshkit/custom/dsl/exec_statements'
 require 'sshkit/custom/dsl/helper'
 
+# @api public
+# @public
 module SSHKit
   module Custom
     module DSL

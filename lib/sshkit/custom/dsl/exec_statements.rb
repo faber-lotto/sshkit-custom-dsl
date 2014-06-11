@@ -4,12 +4,27 @@ module SSHKit
       module ExecStatements
         EXEC_STATEMENTS = [:execute, :make, :rake, :test, :capture, :upload!, :download!].freeze
 
-        EXEC_STATEMENTS.each do |method|
+        # @api private
+        # @!macro [attach] dsl.create_delegator
+        #   @!method $1(*args, &block)
+        #   @api public
+        #   @ dsl
+        #   Delegates $1 to the runner
+        def self.create_delegator(method)
           define_method method do |*args, &block|
             _config_store.runner.send_cmd method, *args, &block
           end
         end
 
+        create_delegator :execute
+        create_delegator :make
+        create_delegator :rake
+        create_delegator :test
+        create_delegator :capture
+        create_delegator :upload!
+        create_delegator :download!
+
+        # @api private
         def _guard_sudo_user!(user)
           execute <<-EOTEST, verbosity: Logger::DEBUG
             if ! sudo -u #{user} whoami > /dev/null
@@ -19,6 +34,7 @@ module SSHKit
           EOTEST
         end
 
+        # @api private
         def _guard_sudo_group!(user, group)
           execute <<-EOTEST, verbosity: Logger::DEBUG if group
             if ! sudo -u #{user} -g #{group} whoami > /dev/null
@@ -28,6 +44,7 @@ module SSHKit
           EOTEST
         end
 
+        # @api private
         def _guard_dir!(dir_to_check)
           execute <<-EOTEST, verbosity: Logger::DEBUG
            if test ! -d #{dir_to_check}
