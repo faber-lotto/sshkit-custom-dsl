@@ -120,6 +120,17 @@ module SSHKit
             expect(Runner::Abstract).to receive(:create_runner).with({ some: :things }.merge(opts))
             Store.create_runner opts
           end
+
+          it 'changes the options globaly' do
+            Store.default_runner_opts(some: :things)
+
+            Thread.new { Store.default_runner_opts(some: :thing_else) }.join
+
+            opts = { in: :groups }
+            expect(Runner::Abstract).to receive(:create_runner).with({ some: :thing_else }.merge(opts))
+            Store.create_runner opts
+
+          end
         end
       end
     end
