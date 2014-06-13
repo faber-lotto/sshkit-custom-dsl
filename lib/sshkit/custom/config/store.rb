@@ -16,7 +16,7 @@ module SSHKit
 
         # @api private
         def global_config_scope
-          @global_config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_global_config', ScopedStorage::ThreadLocalStorage)
+          @global_config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_global_config', ScopedStorage::ThreadGlobalStorage)
         end
 
         # Creates a new runner
