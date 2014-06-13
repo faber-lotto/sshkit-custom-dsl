@@ -80,6 +80,7 @@ on %w{localhost 127.0.0.1}, in: :sequence, wait: 0 do
 end
 
 # thread_count is a new config option for parallel runner
+# is used for Rake::ThreadPool
 on %w{localhost 127.0.0.1}, thread_count: 10 do
   within "/tmp" do
     with rails_env: :production do
