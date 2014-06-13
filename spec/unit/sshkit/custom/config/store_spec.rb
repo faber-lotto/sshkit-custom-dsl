@@ -14,6 +14,7 @@ module SSHKit
 
         before :each do
           SSHKit::Custom::Runner::Abstract.active_backend = mock_bck
+          Store.default_runner_opts nil
         end
 
         describe '.create_runner' do
@@ -108,6 +109,16 @@ module SSHKit
 
             expect(mock_bck.user).to eq 'u'
             expect(mock_bck.group).to eq 'g'
+          end
+        end
+
+        describe '.default_runner_opts' do
+          it 'sets the default options for a runner creation' do
+            Store.default_runner_opts(some: :things)
+
+            opts = { in: :groups }
+            expect(Runner::Abstract).to receive(:create_runner).with({ some: :things }.merge(opts))
+            Store.create_runner opts
           end
         end
       end

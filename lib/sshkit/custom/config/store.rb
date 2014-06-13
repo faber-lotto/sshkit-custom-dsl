@@ -23,7 +23,7 @@ module SSHKit
         # @option opts [Integer] :limit Amount of hosts to use in one Batch for Group Runner
         #
         def create_runner(opts)
-          @runner = Runner::Abstract.create_runner opts
+          @runner = Runner::Abstract.create_runner((config_scope[:_default_runner_opts] || {}).merge(opts))
         end
 
         # The actual runner object
@@ -98,6 +98,10 @@ module SSHKit
         # Returns the active backend in the current thread
         def active_backend
           SSHKit::Custom::Runner::Abstract.active_backend
+        end
+
+        def default_runner_opts(opts)
+          config_scope[:_default_runner_opts] = opts
         end
       end
     end

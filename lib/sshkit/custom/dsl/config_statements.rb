@@ -82,6 +82,14 @@ module SSHKit
           _config_store.pop_user_group
         end
 
+        # Changes the default options for runner creation.
+        #
+        # @param opts [Hash<Symbol, String>] Default options for the runner
+        # @dsl
+        def default_runner_opts(opts)
+          _config_store.default_runner_opts(opts)
+        end
+
         # @api private
         def _setup_runner(hosts, options)
           _config_store.backends = hosts

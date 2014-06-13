@@ -141,6 +141,15 @@ module SSHKit
           end
         end
 
+        describe '.default_runner_opts' do
+          it 'changes the default options for runners' do
+            opts = { a: :b }
+            expect(subject._config_store).to receive(:default_runner_opts).with(opts)
+
+            subject.default_runner_opts(opts)
+          end
+        end
+
       end
     end
   end
