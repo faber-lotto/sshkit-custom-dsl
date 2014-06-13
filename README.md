@@ -79,7 +79,8 @@ on %w{localhost 127.0.0.1}, in: :sequence, wait: 0 do
   end
 end
 
-on %w{localhost 127.0.0.1} do
+# thread_count is a new config option for parallel runner
+on %w{localhost 127.0.0.1}, thread_count: 10 do
   within "/tmp" do
     with rails_env: :production do
       execute "env", "|sort"
