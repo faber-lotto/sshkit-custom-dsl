@@ -63,6 +63,10 @@ class TestScope < SimpleDelegator
   end
 end
 
+
+# new dsl not included in sshkit
+default_runner_opts {in: :groups, limit: 9999}
+
 data = {msg: "ABCD"}
 
 TestScope.new(self).call_it

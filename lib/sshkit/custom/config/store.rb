@@ -14,6 +14,10 @@ module SSHKit
           @config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_config', scope_storage)
         end
 
+        def global_scope
+          @global_config_scope ||= ScopedStorage::Scope.new('sshkit_dsl_global_config', ScopedStorage::ThreadLocalStorage)
+        end
+
         # Creates a new runner
         # @option opts [Symbol] :in Chooses the runner to be used
         #   :parallel => Parallel
@@ -23,7 +27,7 @@ module SSHKit
         # @option opts [Integer] :limit Amount of hosts to use in one Batch for Group Runner
         #
         def create_runner(opts)
-          @runner = Runner::Abstract.create_runner((config_scope[:_default_runner_opts] || {}).merge(opts))
+          @runner = Runner::Abstract.create_runner((global_scope[:_default_runner_opts] || {}).merge(opts))
         end
 
         # The actual runner object
@@ -101,7 +105,7 @@ module SSHKit
         end
 
         def default_runner_opts(opts)
-          config_scope[:_default_runner_opts] = opts
+          global_scope[:_default_runner_opts] = opts
         end
       end
     end
