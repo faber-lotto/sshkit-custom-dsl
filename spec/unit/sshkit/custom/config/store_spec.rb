@@ -121,7 +121,7 @@ module SSHKit
             Store.create_runner opts
           end
 
-          it 'changes the options globaly' do
+          it 'changes the options globally' do
             Store.default_runner_opts(some: :things)
 
             Thread.new { Store.default_runner_opts(some: :thing_else) }.join
