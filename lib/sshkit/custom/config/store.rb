@@ -105,6 +105,7 @@ module SSHKit
           SSHKit::Custom::Runner::Abstract.active_backend
         end
 
+        # Sets the default runner opts for instance change the default runner
         def default_runner_opts(opts)
           global_config_scope[:_default_runner_opts] = opts
         end
