@@ -67,7 +67,7 @@ module SSHKit
         # Set the environment for the current backend.
         # @param env [Hash<String, String>] The new ENV-Vars to be used.
         def add_env(env)
-          old_env =  active_backend.env.clone
+          old_env = active_backend.env.clone
           _envs << old_env
           env = old_env.merge(env)
           active_backend.env = env
@@ -88,7 +88,7 @@ module SSHKit
         # @param user [String] The new username
         # @param group [String, nil] The new group
         def add_user_group(user, group)
-          _user_groups << { user: active_backend.user, group:  active_backend.group }
+          _user_groups << { user: active_backend.user, group: active_backend.group }
           active_backend.user = user
           active_backend.group = group
         end

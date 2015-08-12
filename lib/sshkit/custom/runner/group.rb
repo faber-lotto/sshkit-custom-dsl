@@ -10,11 +10,9 @@ module SSHKit
         # @yields the actual host
         def apply_block_to_bcks(&block)
           backends.each_slice(group_size).map do |group_backends|
-
             exec_parallel(group_backends, &block)
 
             do_wait
-
           end.flatten
         end
 

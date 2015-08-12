@@ -4,6 +4,9 @@ inherit_from: .rubocop_todo.yml
 LineLength:
   Max: 160
 
+Metrics/ModuleLength:
+  Max: 250
+
 Documentation:
   Enabled: false
 

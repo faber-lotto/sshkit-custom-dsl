@@ -14,7 +14,7 @@ module SSHKit
         # @yields the actual host
         def apply_block_to_bcks(&block)
           futures = to_futures(&block)
-          futures.each { |f| f.value }
+          futures.each(&:value)
         end
 
         # @api private

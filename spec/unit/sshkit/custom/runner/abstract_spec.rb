@@ -4,7 +4,6 @@ module SSHKit
   module Custom
     module Runner
       describe Abstract do
-
         subject do
           Abstract.new(wait: 1)
         end
@@ -64,7 +63,6 @@ module SSHKit
               subject.send_cmd(:execute) do
                 args
               end
-
             end
 
             it 'reraises an exception' do
@@ -74,7 +72,6 @@ module SSHKit
                 end
               end.to raise_error
             end
-
           end
 
           describe '.apply_to_bck' do
@@ -93,29 +90,24 @@ module SSHKit
 
               expect { subject.apply_to_bck(mock_bck, &block) }.to raise_error
             end
-
           end
 
           describe '.do_wait' do
             it 'sleeps [wait] seconds' do
-
               expect do
                 subject.send(:do_wait)
               end.to change { Time.now.utc }.by_at_least(1)
             end
-
           end
 
           describe '.apply_block_to_bcks' do
             it 'should be implemented by sub classes' do
               expect do
                 subject.apply_block_to_bcks do
-
                 end
               end.to raise_error
             end
           end
-
         end
       end
     end
