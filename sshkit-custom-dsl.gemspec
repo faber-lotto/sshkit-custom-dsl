@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'scoped_storage'
   spec.add_dependency 'rake'
 
-  spec.add_development_dependency 'bundler', '1.11.2'
+  spec.add_development_dependency 'bundler'
 
   spec.add_development_dependency 'rspec', '3.0.0'
   # show nicely how many specs have to be run
