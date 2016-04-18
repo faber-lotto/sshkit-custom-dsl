@@ -68,7 +68,7 @@ module SSHKit
             it 'reraises an exception' do
               expect do
                 subject.send_cmd(:execute) do
-                  fail
+                  raise
                 end
               end.to raise_error
             end
@@ -86,7 +86,7 @@ module SSHKit
             end
 
             it 'reraises an exception' do
-              block = ->(_host) { fail }
+              block = ->(_host) { raise }
 
               expect { subject.apply_to_bck(mock_bck, &block) }.to raise_error
             end
