@@ -15,7 +15,7 @@ module SSHKit
       end
 
       describe Parallel do
-        let(:thread_pool)do
+        let(:thread_pool) do
           double(:thread_pool).tap do |t|
             allow(t).to receive(:future) do |host, &block|
               DummyFuture.new(host, &block)

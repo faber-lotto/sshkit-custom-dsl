@@ -17,7 +17,7 @@ MethodLength:
   Max: 50
 
 # @see http://www.rubytapas.com/episodes/24-Incidental-Change
-TrailingComma:
+TrailingCommaInLiteral:
   Enabled: false
 
 RegexpLiteral:

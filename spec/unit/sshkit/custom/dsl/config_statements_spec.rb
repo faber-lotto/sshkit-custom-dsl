@@ -67,7 +67,7 @@ module SSHKit
 
             expect do
               subject.within(dir) do
-                fail
+                raise
               end
             end.to raise_error
           end
@@ -94,7 +94,7 @@ module SSHKit
 
             expect do
               subject.with(env) do
-                fail
+                raise
               end
             end.to raise_error
           end
@@ -117,7 +117,7 @@ module SSHKit
 
             expect do
               subject.as(user: user, group: group) do
-                fail
+                raise
               end
             end.to raise_error
           end

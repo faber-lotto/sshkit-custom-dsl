@@ -8,6 +8,7 @@ module SSHKit
       # Base class for all runners
       # @abstract Subclass and override {#apply_block_to_bcks} to implement
       # @public
+      # rubocop:disable Performance/RedundantBlockCall
       class Abstract
         attr_accessor :backends
         attr_reader :options
@@ -25,7 +26,7 @@ module SSHKit
           when :groups
             Group
           else
-            fail "Don't know how to handle run style #{opts_with_defaults[:in].inspect}"
+            raise "Don't know how to handle run style #{opts_with_defaults[:in].inspect}"
           end.new(opts_with_defaults)
         end
 
@@ -41,7 +42,7 @@ module SSHKit
 
         # @api private
         def self.active_backend
-          scope[:active_backend] || fail(ArgumentError, 'Backend not set')
+          scope[:active_backend] || raise(ArgumentError, 'Backend not set')
         end
 
         # @api private
@@ -77,7 +78,7 @@ module SSHKit
 
         # @abstract
         def apply_block_to_bcks(&_block)
-          fail SSHKit::Backend::MethodUnavailableError
+          raise SSHKit::Backend::MethodUnavailableError
         end
 
         # @api private
@@ -102,6 +103,7 @@ module SSHKit
           @wait_interval || options[:wait] || 2
         end
       end
+      # rubocop:enable Performance/RedundantBlockCall
     end
   end
 end
