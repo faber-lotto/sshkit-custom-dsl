@@ -7,7 +7,7 @@ RSpec::Core::RakeTask.new(:spec)
 RuboCop::RakeTask.new
 
 YARD::Rake::YardocTask.new do |t|
-  t.files   = ['lib/**/*.rb']   # optional
+  t.files = ['lib/**/*.rb'] # optional
 end
 
 task default: :spec

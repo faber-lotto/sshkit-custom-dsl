@@ -84,7 +84,7 @@ module SSHKit
         def apply_to_bck(backend, &block)
           self.active_backend = backend
           block.call(backend.host)
-         rescue => e
+        rescue => e
           e2 = ExecuteError.new e
           raise e2, "Exception while executing on host #{backend.host}: #{e.message}"
         ensure

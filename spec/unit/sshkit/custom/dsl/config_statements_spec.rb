@@ -149,7 +149,6 @@ module SSHKit
             subject.default_runner_opts(opts)
           end
         end
-
       end
     end
   end

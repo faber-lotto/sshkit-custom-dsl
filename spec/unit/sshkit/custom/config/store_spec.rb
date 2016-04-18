@@ -4,7 +4,6 @@ module SSHKit
   module Custom
     module Config
       describe Store do
-
         let(:mock_bck) do
           SSHKit.config.backend.new(SSHKit::Host.new('localhost'))
         end
@@ -57,7 +56,6 @@ module SSHKit
         end
 
         describe '.add_env' do
-
           it 'adds an env to the stack' do
             expect(mock_bck.env).to eq({})
             Store.add_env(new_env)
@@ -129,7 +127,6 @@ module SSHKit
             opts = { in: :groups }
             expect(Runner::Abstract).to receive(:create_runner).with({ some: :thing_else }.merge(opts))
             Store.create_runner opts
-
           end
         end
       end

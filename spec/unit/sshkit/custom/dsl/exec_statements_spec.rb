@@ -15,7 +15,6 @@ module SSHKit
             end
 
             attr_accessor :runner
-
           end.new
         end
 
@@ -67,7 +66,6 @@ module SSHKit
             subject._guard_dir!('/tmp')
           end
         end
-
       end
     end
   end

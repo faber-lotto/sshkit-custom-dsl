@@ -9,13 +9,12 @@ module SSHKit
         end
 
         describe '.apply_block_to_bcks' do
-
           let(:block) { ->(_) {} }
           let(:bck1) { SSHKit.config.backend.new(SSHKit::Host.new('localhost')) }
           let(:bck2) { SSHKit.config.backend.new(SSHKit::Host.new('127.0.0.1')) }
 
           before :each do
-            allow(subject).to receive(:use_runner).and_return(->(options) {Sequential.new(options) })
+            allow(subject).to receive(:use_runner).and_return(->(options) { Sequential.new(options) })
           end
 
           it 'calls apply_to_bck for every backend' do

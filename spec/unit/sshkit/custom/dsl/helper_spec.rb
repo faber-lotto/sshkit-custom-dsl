@@ -48,9 +48,7 @@ module SSHKit
             lch = SSHKit::Host.new('localhost')
             expect(subject.Host(lch)).to eq(lch)
           end
-
         end
-
       end
     end
   end
