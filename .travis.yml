@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1
-  - 2.0
+  - 2.1.5p273
+  - 2.2.1
 script: bundle exec rake spec rubocop
 cache: bundler
